@@ -2,15 +2,12 @@ package es.imposoft.SpringMVC.Controller;
 
 import es.imposoft.SpringMVC.Greeting;
 import es.imposoft.SpringMVC.Model.Menu;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @RestController
 public class GreetingController {
@@ -25,6 +22,24 @@ public class GreetingController {
     @GetMapping("/testMenu")
     public Menu testMenu() {
         return new Menu("texto");
+    }
+
+
+    @GetMapping("/loadMenu")
+    public Menu loadMenu() {
+        String menuText = readFileAsString("outputs/testMenu.txt");
+        return new Menu(menuText);
+    }
+
+    public static String readFileAsString(String fileName) {
+        String text = "";
+        try {
+            text = new String(Files.readAllBytes(Paths.get(fileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return text;
     }
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
