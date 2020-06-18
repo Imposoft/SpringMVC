@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
@@ -31,7 +29,18 @@ public class GreetingController {
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
     public Menu createMenu(@RequestBody Menu newMenu) {
-        System.out.println("HA LLAMADO CON UNA PERSONA " + newMenu.getMenuText());
+        System.out.println("Se ha creado un menu nuevo " + newMenu.getMenuText());
+
+        try {
+            new File("/outputs").mkdirs();
+            PrintWriter writer = new PrintWriter("outputs/testMenu.txt", "UTF-8");
+            writer.println(newMenu.getMenuText());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         return newMenu;
     }
