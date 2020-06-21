@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table
 public class Menu {
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Integer id;
     private String menuText;
 
@@ -14,6 +14,7 @@ public class Menu {
     }
 
     public Menu(String menuText){
+        this.id = 0;
         this.menuText = menuText;
     }
 
