@@ -5,6 +5,9 @@ target/*
 !**/src/main/**
 !**/src/test/**
 
+### Spring keys ###
+src/main/resources/application.properties
+
 ### STS ###
 .apt_generated
 .classpath
