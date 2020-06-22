@@ -27,6 +27,10 @@ public class Section {
         this.menus = menu;
     }
 
+    public void addMenu(Menu menu){
+        menus.add(menu);
+    }
+
     public Section(String name, String description, Menu menu) {
         this.name = name;
         this.description = description;

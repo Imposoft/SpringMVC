@@ -22,13 +22,13 @@ public class Dish {
 
     private double price;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Section> section;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Section section;
     //TODO Implementar: Image image;
 
     public Dish(){}
 
-    public Dish(String name, String description, List<AllergenModel> allergens, double price, List<Section> sections) {
+    public Dish(String name, String description, List<AllergenModel> allergens, double price, Section sections) {
         this.name = name;
         this.description = description;
         this.allergens = allergens;
@@ -77,10 +77,10 @@ public class Dish {
     }
 
     public Section getSection() {
-        return section.get(0);
+        return section;
     }
 
     public void setSection(Section section) {
-        this.section.set(0,section);
+        this.section = section;
     }
 }

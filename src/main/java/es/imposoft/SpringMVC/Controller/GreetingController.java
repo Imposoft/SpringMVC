@@ -49,8 +49,8 @@ public class GreetingController {
         return text;
     }
 
-    @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
-    public Menu createMenu(@RequestBody MenuModel newMenu) {
+    @PostMapping(value = "/createMenuFile", consumes = "application/json", produces = "application/json")
+    public Menu createMenuFile(@RequestBody MenuModel newMenu) {
         System.out.println("Se ha creado un menu nuevo " + newMenu.getMenuText());
         Menu menuToSave = new Menu(newMenu.getMenuText());
         menuRepository.save(menuToSave);
@@ -66,5 +66,12 @@ public class GreetingController {
         }
 
         return menuToSave;
+    }
+
+    @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
+    public MenuModel createMenu(@RequestBody MenuModel newMenu) {
+        System.out.println("Se ha recibido un nuevo menu");
+
+        return newMenu;
     }
 }
