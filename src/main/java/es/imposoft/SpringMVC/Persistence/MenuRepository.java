@@ -4,5 +4,7 @@ import es.imposoft.SpringMVC.Entities.Menu;
 import org.springframework.data.repository.CrudRepository;
 
 public interface MenuRepository extends CrudRepository<Menu, Integer> {
-    Menu findMenuByMenuText(String textMenu);
+    Menu findMenuByName(String name);
+    Menu findMenuById(int id);
+    Menu findFirstByName(String name);
 }

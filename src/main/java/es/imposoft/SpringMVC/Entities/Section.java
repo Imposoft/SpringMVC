@@ -1,13 +1,14 @@
 package es.imposoft.SpringMVC.Entities;
 
-import es.imposoft.SpringMVC.Model.SectionModel;
+import es.imposoft.SpringMVC.Model.DishModel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table
-public class Menu {
+public class Section {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id = 0;
@@ -15,26 +16,30 @@ public class Menu {
     private String name;
     private String description;
 
-    public Menu(){
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Menu> menus = new ArrayList<>();
 
-    public Menu(String name, String description) {
+    public Section(){}
+
+    public Section(String name, String description, List<Menu> menu) {
         this.name = name;
         this.description = description;
+        this.menus = menu;
     }
 
-    public Menu(String menuText){
-        this.id = 0;
+    public Section(String name, String description, Menu menu) {
+        this.name = name;
+        this.description = description;
+        this.menus.add(menu);
     }
 
-    public int getId(){
+    public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -52,7 +57,11 @@ public class Menu {
         this.description = description;
     }
 
-    public String getMenuText(){
-        return description;
+    public List<Menu> getMenu() {
+        return menus;
+    }
+
+    public void setMenu(Menu menu) {
+        menus.add(menu);
     }
 }
