@@ -9,13 +9,15 @@ public class DishModel {
     int id;
     String name, description;
     List<AllergenModel> allergens;
+    float price;
     Image image;
 
-    public DishModel(int id, String name, String description, List<AllergenModel> allergens, Image image) {
+    public DishModel(int id, String name, String description, List<AllergenModel> allergens, float price, Image image) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.allergens = allergens;
+        this.price = price;
         this.image = image;
     }
 
@@ -49,6 +51,14 @@ public class DishModel {
 
     public void setAllergens(List<AllergenModel> allergens) {
         this.allergens = allergens;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public Image getImage() {
