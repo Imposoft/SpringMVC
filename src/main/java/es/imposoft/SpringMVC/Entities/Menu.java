@@ -3,6 +3,7 @@ package es.imposoft.SpringMVC.Entities;
 import es.imposoft.SpringMVC.Model.SectionModel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,12 +16,27 @@ public class Menu {
     private String name;
     private String description;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "menu")
+    private List<Section> sections;
+
     public Menu(){
     }
 
-    public Menu(String name, String description) {
+    public Menu(String name, String description,Section section) {
         this.name = name;
         this.description = description;
+        sections = new ArrayList<>();
+        section.addMenu(this);
+        this.sections.add(section);
+    }
+
+    public Menu(String name, String description,List<Section> sections) {
+        this.name = name;
+        this.description = description;
+        for (Section section:sections) {
+            section.addMenu(this);
+        }
+        this.sections = sections;
     }
 
     public Menu(String menuText){

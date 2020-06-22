@@ -35,33 +35,39 @@ public class MenuRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        Menu menu2 = new Menu("TestMenuNew2","testDescription1234");
-        Menu menu1 = new Menu("TestMenuNew1","testDescription123");
-        Section section1 = new Section("seccion 1","descripcion de secion",menu1);
-        section1.addMenu(menu2);
         List<AllergenModel> allergensList = new ArrayList<>();
         allergensList.add(AllergenModel.APIO);
         allergensList.add(AllergenModel.ALTRAMUCES);
-        Dish dish1 = new Dish("Bravas","Picaan bro",allergensList,20.4,section1);
-        Dish dish2 = new Dish("Morro de cerdo","Bro que rico",allergensList,4.5,section1);
+        Dish dish1 = new Dish("Bravas","Picaan bro",allergensList,20.4);
+        Dish dish2 = new Dish("Morro de cerdo","Bro que rico",allergensList,4.5);
+        List<Dish> dishes = new ArrayList<>();
+        dishes.add(dish1);
+        Section section1 = new Section("seccion 1","descripcion de secion",dishes);
+        dishes.add(dish2);
+        Section section2 = new Section("seccion 2","descripcion de secion",dishes);
+        List<Section> sections = new ArrayList<>();
+        sections.add(section1);
+        sections.add(section2);
+        Menu menu1 = new Menu("TestMenuNew1","testDescription123",sections);
         assertEquals(0,menu1.getId());
-        this.dishRepository.save(dish1);
-        //this.menuRepository.save(menu1);
+
+        this.menuRepository.save(menu1);
+
         assertNotNull(menu1.getId());
     }
 
-    @Test
+    /*@Test
     public void testFetchData() {
-        /*Test data retrieval*/
+        /*Test data retrieval
         Menu menu1 = menuRepository.findFirstByName("TestMenuNew1");
         assertNotNull(menu1);
         System.out.println(menu1.getId());
         assertEquals("TestMenuNew1", menu1.getName());
-    }
+    }*/
 
     @Test
     public void testMenuJSON(){
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         List<AllergenModel> allergensList = new ArrayList<>();
         allergensList.add(AllergenModel.APIO);
         allergensList.add(AllergenModel.ALTRAMUCES);
@@ -77,6 +83,6 @@ public class MenuRepositoryTest {
         sections.add(section1);
         sections.add(section2);
         MenuModel menu = new MenuModel(sections,"Nombre menu","Descripcion menu", 0);
-        System.out.println(gson.toJson(menu));
+        System.out.println(gson.toJson(menu));*/
     }
 }

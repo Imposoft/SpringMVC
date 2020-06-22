@@ -16,24 +16,24 @@ public class Dish {
     private String name;
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id",nullable = false)
+    private Section section;
+
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<AllergenModel> allergens;
 
     private double price;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Section section;
     //TODO Implementar: Image image;
 
     public Dish(){}
 
-    public Dish(String name, String description, List<AllergenModel> allergens, double price, Section sections) {
+    public Dish(String name, String description, List<AllergenModel> allergens, double price) {
         this.name = name;
         this.description = description;
         this.allergens = allergens;
         this.price = price;
-        this.section = sections;
     }
 
     public Integer getId() {
@@ -76,11 +76,11 @@ public class Dish {
         this.price = price;
     }
 
-    public Section getSection() {
-        return section;
-    }
-
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public Section getSection() {
+        return section;
     }
 }
