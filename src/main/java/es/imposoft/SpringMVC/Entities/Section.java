@@ -1,6 +1,9 @@
 package es.imposoft.SpringMVC.Entities;
 
+import es.imposoft.SpringMVC.Model.DishDTO;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +23,9 @@ public class Section {
     @JoinColumn(name = "menu_id",nullable = false)
     private Menu menu;
 
-    public Section(){}
+    public Section(){
+        dishes = new ArrayList<>();
+    }
 
     public Section(String name, String description, List<Dish> dishes) {
         this.name = name;
@@ -28,12 +33,14 @@ public class Section {
         for (Dish dish:dishes) {
             dish.setSection(this);
         }
+        this.dishes = new ArrayList<>();
         this.dishes = dishes;
     }
 
     public Section(String name, String description, Dish dish) {
         this.name = name;
         this.description = description;
+        dishes = new ArrayList<>();
         this.dishes.add(dish);
     }
 
@@ -65,9 +72,12 @@ public class Section {
         this.description = description;
     }
 
-
     public void setDishes(Dish dish) {
         dishes.add(dish);
+    }
+
+    public List<Dish> getDishes() {
+        return dishes;
     }
 
     public void addMenu(Menu menu) {

@@ -1,5 +1,7 @@
 package es.imposoft.SpringMVC.Entities;
 
+import es.imposoft.SpringMVC.Model.MenuDTO;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Menu {
     private List<Section> sections;
 
     public Menu(){
+        sections = new ArrayList<>();
     }
 
     public Menu(String name, String description,Section section) {
@@ -68,5 +71,17 @@ public class Menu {
 
     public String getMenuText(){
         return description;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void addSection(Section sections) {
+        this.sections.add(sections);
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
 }

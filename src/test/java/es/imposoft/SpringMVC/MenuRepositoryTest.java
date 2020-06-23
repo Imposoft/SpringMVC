@@ -3,13 +3,20 @@ package es.imposoft.SpringMVC;
 import es.imposoft.SpringMVC.Entities.Dish;
 import es.imposoft.SpringMVC.Entities.Menu;
 import es.imposoft.SpringMVC.Entities.Section;
+import es.imposoft.SpringMVC.Logic.Converter.ConvertUtil;
 import es.imposoft.SpringMVC.Model.AllergenDTO;
+import es.imposoft.SpringMVC.Model.DishDTO;
+import es.imposoft.SpringMVC.Model.MenuDTO;
+import es.imposoft.SpringMVC.Model.SectionDTO;
 import es.imposoft.SpringMVC.Persistence.DishRepository;
 import es.imposoft.SpringMVC.Persistence.MenuRepository;
 import es.imposoft.SpringMVC.Persistence.SectionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
+import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -28,6 +35,8 @@ public class MenuRepositoryTest {
     private SectionRepository sectionRepository;
     @Autowired
     private DishRepository dishRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Before
     public void setUp() throws Exception {
@@ -80,5 +89,23 @@ public class MenuRepositoryTest {
         sections.add(section2);
         MenuModel menu = new MenuModel(sections,"Nombre menu","Descripcion menu", 0);
         System.out.println(gson.toJson(menu));*/
+    }
+
+    @Test
+    public void testDTOConversion(){
+        List<AllergenDTO> allergensList = new ArrayList<>();
+        allergensList.add(AllergenDTO.APIO);
+        DishDTO dish = new DishDTO(0,"Bravas","pican bro",allergensList,23.0);
+        List<DishDTO> dishes = new ArrayList<>();
+        dishes.add(dish);
+        SectionDTO section = new SectionDTO(0,"seccion 1","descripcion de secion",dishes);
+        List<SectionDTO> sections = new ArrayList<>();
+        sections.add(section);
+        MenuDTO postDto = new MenuDTO(sections,"Nombre","descripcion",0);
+        Menu menu = ConvertUtil.convertMenu(postDto);
+
+        assertEquals("Bravas",menu.getSections().get(0).getDishes().get(0).getName());
+        assertEquals("seccion 1",menu.getSections().get(0).getName());
+        assertEquals("Nombre",menu.getName());
     }
 }

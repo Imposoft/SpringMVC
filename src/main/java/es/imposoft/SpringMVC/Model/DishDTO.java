@@ -10,15 +10,14 @@ public class DishDTO {
     String name, description;
     List<AllergenDTO> allergens;
     double price;
-    Image image;
 
-    public DishDTO(int id, String name, String description, List<AllergenDTO> allergens, double price, Image image) {
+    public DishDTO(int id, String name, String description, List<AllergenDTO> allergens, double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.allergens = allergens;
         this.price = price;
-        this.image = image;
+        //this.image = image;
     }
 
     public int getId() {
@@ -59,13 +58,5 @@ public class DishDTO {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
     }
 }

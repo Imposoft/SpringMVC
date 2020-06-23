@@ -1,5 +1,6 @@
 package es.imposoft.SpringMVC.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SectionDTO {
@@ -12,6 +13,7 @@ public class SectionDTO {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.dishes = new ArrayList<>();
         this.dishes = dishes;
     }
 

@@ -16,6 +16,13 @@ public class MenuDTO {
         this.id = id;
     }
 
+    public MenuDTO(){
+    }
+
+    public MenuDTO(String menuText){
+        this.menuText = menuText;
+    }
+
     public List<SectionDTO> getSections() {
         return sections;
     }
@@ -46,13 +53,6 @@ public class MenuDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public MenuDTO(){
-    }
-
-    public MenuDTO(String menuText){
-        this.menuText = menuText;
     }
 
     public String getMenuText(){
