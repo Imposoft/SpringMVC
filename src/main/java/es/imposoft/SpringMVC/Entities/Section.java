@@ -1,9 +1,6 @@
 package es.imposoft.SpringMVC.Entities;
 
-import es.imposoft.SpringMVC.Model.DishModel;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

@@ -4,15 +4,15 @@ package es.imposoft.SpringMVC.Model;
 import java.awt.*;
 import java.util.List;
 
-public class DishModel {
+public class DishDTO {
 
     int id;
     String name, description;
-    List<AllergenModel> allergens;
+    List<AllergenDTO> allergens;
     double price;
     Image image;
 
-    public DishModel(int id, String name, String description, List<AllergenModel> allergens, double price, Image image) {
+    public DishDTO(int id, String name, String description, List<AllergenDTO> allergens, double price, Image image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,11 +45,11 @@ public class DishModel {
         this.description = description;
     }
 
-    public List<AllergenModel> getAllergens() {
+    public List<AllergenDTO> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(List<AllergenModel> allergens) {
+    public void setAllergens(List<AllergenDTO> allergens) {
         this.allergens = allergens;
     }
 

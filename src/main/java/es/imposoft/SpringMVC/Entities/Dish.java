@@ -1,9 +1,8 @@
 package es.imposoft.SpringMVC.Entities;
 
-import es.imposoft.SpringMVC.Model.AllergenModel;
+import es.imposoft.SpringMVC.Model.AllergenDTO;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.util.List;
 
 @Entity
@@ -22,14 +21,14 @@ public class Dish {
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private List<AllergenModel> allergens;
+    private List<AllergenDTO> allergens;
 
     private double price;
     //TODO Implementar: Image image;
 
     public Dish(){}
 
-    public Dish(String name, String description, List<AllergenModel> allergens, double price) {
+    public Dish(String name, String description, List<AllergenDTO> allergens, double price) {
         this.name = name;
         this.description = description;
         this.allergens = allergens;
@@ -60,11 +59,11 @@ public class Dish {
         this.description = description;
     }
 
-    public List<AllergenModel> getAllergens() {
+    public List<AllergenDTO> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(List<AllergenModel> allergens) {
+    public void setAllergens(List<AllergenDTO> allergens) {
         this.allergens = allergens;
     }
 

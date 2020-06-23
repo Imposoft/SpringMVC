@@ -2,7 +2,7 @@ package es.imposoft.SpringMVC.Controller;
 
 import es.imposoft.SpringMVC.Model.Greeting;
 import es.imposoft.SpringMVC.Entities.Menu;
-import es.imposoft.SpringMVC.Model.MenuModel;
+import es.imposoft.SpringMVC.Model.MenuDTO;
 import es.imposoft.SpringMVC.Persistence.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +50,7 @@ public class GreetingController {
     }
 
     @PostMapping(value = "/createMenuFile", consumes = "application/json", produces = "application/json")
-    public Menu createMenuFile(@RequestBody MenuModel newMenu) {
+    public Menu createMenuFile(@RequestBody MenuDTO newMenu) {
         System.out.println("Se ha creado un menu nuevo " + newMenu.getMenuText());
         Menu menuToSave = new Menu(newMenu.getMenuText());
         menuRepository.save(menuToSave);
@@ -69,7 +69,7 @@ public class GreetingController {
     }
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
-    public MenuModel createMenu(@RequestBody MenuModel newMenu) {
+    public MenuDTO createMenu(@RequestBody MenuDTO newMenu) {
         System.out.println("Se ha recibido un nuevo menu");
 
         return newMenu;

@@ -2,25 +2,25 @@ package es.imposoft.SpringMVC.Model;
 
 import java.util.List;
 
-public class MenuModel {
+public class MenuDTO {
     private String menuText;
 
-    List<SectionModel> sections;
+    List<SectionDTO> sections;
     String name, description;
     int id;
 
-    public MenuModel(List<SectionModel> sections, String name, String description, int id) {
+    public MenuDTO(List<SectionDTO> sections, String name, String description, int id) {
         this.sections = sections;
         this.name = name;
         this.description = description;
         this.id = id;
     }
 
-    public List<SectionModel> getSections() {
+    public List<SectionDTO> getSections() {
         return sections;
     }
 
-    public void setSections(List<SectionModel> sections) {
+    public void setSections(List<SectionDTO> sections) {
         this.sections = sections;
     }
 
@@ -48,10 +48,10 @@ public class MenuModel {
         this.id = id;
     }
 
-    public MenuModel(){
+    public MenuDTO(){
     }
 
-    public MenuModel(String menuText){
+    public MenuDTO(String menuText){
         this.menuText = menuText;
     }
 

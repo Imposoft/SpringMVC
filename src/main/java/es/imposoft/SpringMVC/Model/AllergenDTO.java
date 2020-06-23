@@ -1,6 +1,6 @@
 package es.imposoft.SpringMVC.Model;
 
-public enum AllergenModel {
+public enum AllergenDTO {
     GLUTEN,
     CRUSTACEOS,
     HUEVOS,

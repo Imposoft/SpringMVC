@@ -1,11 +1,11 @@
 package es.imposoft.SpringMVC.Model;
 
-public class UserModel {
+public class UserDTO {
 
     int id;
     String name, username, password;
 
-    public UserModel(int id, String name, String username, String password) {
+    public UserDTO(int id, String name, String username, String password) {
         this.id = id;
         this.name = name;
         this.username = username;

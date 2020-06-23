@@ -1,13 +1,9 @@
 package es.imposoft.SpringMVC;
 
-import com.google.gson.Gson;
 import es.imposoft.SpringMVC.Entities.Dish;
 import es.imposoft.SpringMVC.Entities.Menu;
 import es.imposoft.SpringMVC.Entities.Section;
-import es.imposoft.SpringMVC.Model.AllergenModel;
-import es.imposoft.SpringMVC.Model.DishModel;
-import es.imposoft.SpringMVC.Model.MenuModel;
-import es.imposoft.SpringMVC.Model.SectionModel;
+import es.imposoft.SpringMVC.Model.AllergenDTO;
 import es.imposoft.SpringMVC.Persistence.DishRepository;
 import es.imposoft.SpringMVC.Persistence.MenuRepository;
 import es.imposoft.SpringMVC.Persistence.SectionRepository;
@@ -35,9 +31,9 @@ public class MenuRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        List<AllergenModel> allergensList = new ArrayList<>();
-        allergensList.add(AllergenModel.APIO);
-        allergensList.add(AllergenModel.ALTRAMUCES);
+        List<AllergenDTO> allergensList = new ArrayList<>();
+        allergensList.add(AllergenDTO.APIO);
+        allergensList.add(AllergenDTO.ALTRAMUCES);
         Dish dish1 = new Dish("Bravas","Picaan bro",allergensList,20.4);
         Dish dish2 = new Dish("Morro de cerdo","Bro que rico",allergensList,4.5);
         List<Dish> dishes = new ArrayList<>();

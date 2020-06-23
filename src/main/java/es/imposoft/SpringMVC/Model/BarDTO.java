@@ -1,18 +1,20 @@
 package es.imposoft.SpringMVC.Model;
 
+import es.imposoft.SpringMVC.Entities.Menu;
+
 import java.util.List;
 
-public class SectionModel {
+public class BarDTO {
 
     int id;
     String name, description;
-    List<DishModel> dishes;
+    List<Menu> menus;
 
-    public SectionModel(int id, String name, String description, List<DishModel> dishes) {
+    public BarDTO(int id, String name, String description, List<Menu> menus) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.dishes = dishes;
+        this.menus = menus;
     }
 
     public int getId() {
@@ -39,11 +41,11 @@ public class SectionModel {
         this.description = description;
     }
 
-    public List<DishModel> getDishes() {
-        return dishes;
+    public List<Menu> getMenus() {
+        return menus;
     }
 
-    public void setDishes(List<DishModel> dishes) {
-        this.dishes = dishes;
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 }
