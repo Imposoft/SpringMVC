@@ -30,4 +30,25 @@ public class ConvertUtil {
         }
         return convertedMenu;
     }
+
+    public static MenuDTO convertMenuDTO(Menu menuToConvert) {
+        MenuDTO convertedMenu = new MenuDTO();
+        convertedMenu.setName(menuToConvert.getName());
+        convertedMenu.setDescription(menuToConvert.getDescription());
+        for (Section sectionToConvert: menuToConvert.getSections()) {
+            SectionDTO convertedSection = new SectionDTO();
+            convertedSection.setName(sectionToConvert.getName());
+            convertedSection.setDescription(sectionToConvert.getDescription());
+            for (Dish dishToConvert:sectionToConvert.getDishes()) {
+                DishDTO convertedDish = new DishDTO();
+                convertedDish.setName(dishToConvert.getName());
+                convertedDish.setDescription(dishToConvert.getDescription());
+                convertedDish.setPrice(dishToConvert.getPrice());
+                convertedDish.setAllergens(dishToConvert.getAllergens());
+                convertedSection.addDish(convertedDish);
+            }
+            convertedMenu.addSection(convertedSection);
+        }
+        return convertedMenu;
+    }
 }

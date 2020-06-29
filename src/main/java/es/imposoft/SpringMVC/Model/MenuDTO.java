@@ -1,5 +1,6 @@
 package es.imposoft.SpringMVC.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuDTO {
@@ -17,6 +18,7 @@ public class MenuDTO {
     }
 
     public MenuDTO(){
+        this.sections = new ArrayList<>();
     }
 
     public MenuDTO(String menuText){
@@ -61,5 +63,9 @@ public class MenuDTO {
 
     public void setMenuText(String menuText){
         this.menuText = menuText;
+    }
+
+    public void addSection(SectionDTO convertedSection) {
+        this.sections.add(convertedSection);
     }
 }

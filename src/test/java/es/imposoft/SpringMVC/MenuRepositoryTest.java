@@ -14,9 +14,6 @@ import es.imposoft.SpringMVC.Persistence.SectionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,8 +32,6 @@ public class MenuRepositoryTest {
     private SectionRepository sectionRepository;
     @Autowired
     private DishRepository dishRepository;
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Before
     public void setUp() throws Exception {
@@ -61,14 +56,14 @@ public class MenuRepositoryTest {
         assertNotNull(menu1.getId());
     }
 
-    /*@Test
+    @Test
     public void testFetchData() {
-        /*Test data retrieval
-        Menu menu1 = menuRepository.findFirstByName("TestMenuNew1");
+        //Test data retrieval
+        Menu menu1 = menuRepository.findMenuById(1);
         assertNotNull(menu1);
-        System.out.println(menu1.getId());
+        System.out.println(menu1.getId() + menu1.getMenuText());
         assertEquals("TestMenuNew1", menu1.getName());
-    }*/
+    }
 
     @Test
     public void testMenuJSON(){

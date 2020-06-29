@@ -17,6 +17,10 @@ public class SectionDTO {
         this.dishes = dishes;
     }
 
+    public SectionDTO() {
+        this.dishes = new ArrayList<>();
+    }
+
     public int getId() {
         return id;
     }
@@ -47,5 +51,9 @@ public class SectionDTO {
 
     public void setDishes(List<DishDTO> dishes) {
         this.dishes = dishes;
+    }
+
+    public void addDish(DishDTO convertedDish) {
+        this.dishes.add(convertedDish);
     }
 }

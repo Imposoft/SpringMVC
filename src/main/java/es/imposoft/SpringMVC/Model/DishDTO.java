@@ -2,6 +2,7 @@ package es.imposoft.SpringMVC.Model;
 
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DishDTO {
@@ -18,6 +19,10 @@ public class DishDTO {
         this.allergens = allergens;
         this.price = price;
         //this.image = image;
+    }
+
+    public DishDTO() {
+        this.allergens = new ArrayList<>();
     }
 
     public int getId() {
@@ -56,7 +61,7 @@ public class DishDTO {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
