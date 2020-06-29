@@ -12,6 +12,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -32,6 +34,16 @@ public class GreetingController {
         Menu menu = menuRepository.findMenuById(id);
         MenuDTO menuToReturn = convertToDTO(menu);
         return menuToReturn;
+    }
+
+    @GetMapping("/loadMenus")
+    public List<MenuDTO> loadMenus() {
+        List<Menu> menus = menuRepository.findAll();
+        List<MenuDTO> convertedMenus = new ArrayList<>();
+        for (Menu menu:menus) {
+            convertedMenus.add(convertToDTO(menu));
+        }
+        return convertedMenus;
     }
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")

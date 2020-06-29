@@ -35,8 +35,10 @@ public class ConvertUtil {
         MenuDTO convertedMenu = new MenuDTO();
         convertedMenu.setName(menuToConvert.getName());
         convertedMenu.setDescription(menuToConvert.getDescription());
+        convertedMenu.setId(menuToConvert.getId());
         for (Section sectionToConvert: menuToConvert.getSections()) {
             SectionDTO convertedSection = new SectionDTO();
+            convertedSection.setId(sectionToConvert.getId());
             convertedSection.setName(sectionToConvert.getName());
             convertedSection.setDescription(sectionToConvert.getDescription());
             for (Dish dishToConvert:sectionToConvert.getDishes()) {
