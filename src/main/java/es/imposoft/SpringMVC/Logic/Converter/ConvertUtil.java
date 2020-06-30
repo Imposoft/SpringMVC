@@ -25,6 +25,7 @@ public class ConvertUtil {
                 convertedDish.setPrice(dishToConvert.getPrice());
                 convertedDish.setAllergens(dishToConvert.getAllergens());
                 convertedDish.setSection(convertedSection);
+                convertedDish.setId(dishToConvert.getId());
                 convertedSection.addDish(convertedDish);
             }
             convertedSection.addMenu(convertedMenu);
@@ -49,6 +50,7 @@ public class ConvertUtil {
                 convertedDish.setDescription(dishToConvert.getDescription());
                 convertedDish.setPrice(dishToConvert.getPrice());
                 convertedDish.setAllergens(dishToConvert.getAllergens());
+                convertedDish.setId(dishToConvert.getId());
                 convertedSection.addDish(convertedDish);
             }
             convertedMenu.addSection(convertedSection);
