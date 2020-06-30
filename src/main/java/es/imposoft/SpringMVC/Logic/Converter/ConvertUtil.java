@@ -10,12 +10,14 @@ import es.imposoft.SpringMVC.Model.SectionDTO;
 public class ConvertUtil {
     public static Menu convertMenu(MenuDTO menuToConvert){
         Menu convertedMenu = new Menu();
+        convertedMenu.setId(menuToConvert.getId());
         convertedMenu.setName(menuToConvert.getName());
         convertedMenu.setDescription(menuToConvert.getDescription());
         for (SectionDTO sectionToConvert: menuToConvert.getSections()) {
             Section convertedSection = new Section();
             convertedSection.setName(sectionToConvert.getName());
             convertedSection.setDescription(sectionToConvert.getDescription());
+            convertedSection.setId(sectionToConvert.getId());
             for (DishDTO dishToConvert:sectionToConvert.getDishes()) {
                 Dish convertedDish = new Dish();
                 convertedDish.setName(dishToConvert.getName());

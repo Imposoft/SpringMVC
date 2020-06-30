@@ -60,9 +60,11 @@ public class MenuRepositoryTest {
     public void testFetchData() {
         //Test data retrieval
         Menu menu1 = menuRepository.findMenuById(1);
+        menu1.setDescription("Nueva descripcion");
         MenuDTO menuDTO = ConvertUtil.convertMenuDTO(menu1);
         assertNotNull(menu1);
         assertNotNull(menuDTO);
+        menuRepository.save(menu1);
         System.out.println(menu1.getId() + menu1.getMenuText());
         System.out.println(menuDTO.getId() + menuDTO.getName());
         assertEquals("TestMenuNew1", menu1.getName());
