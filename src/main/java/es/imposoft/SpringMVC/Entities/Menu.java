@@ -14,7 +14,7 @@ public class Menu {
     private String name;
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "menu")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "menu")
     private List<Section> sections;
 
     public Menu(){

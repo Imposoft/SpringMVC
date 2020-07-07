@@ -1,6 +1,7 @@
 package es.imposoft.SpringMVC.Models;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,10 @@ public class DishDTO {
         this.allergens = allergens;
         this.price = price;
         //this.image = image;
+    }
+
+    public DishDTO() {
+        this.allergens = new ArrayList<>();
     }
 
     public int getId() {

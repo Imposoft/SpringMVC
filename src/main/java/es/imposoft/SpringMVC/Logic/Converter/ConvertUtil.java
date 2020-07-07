@@ -10,12 +10,14 @@ import es.imposoft.SpringMVC.Models.SectionDTO;
 public class ConvertUtil {
     public static Menu convertDTOtoMenu(MenuDTO menuToConvert){
         Menu convertedMenu = new Menu();
+        convertedMenu.setId(menuToConvert.getId());
         convertedMenu.setName(menuToConvert.getName());
         convertedMenu.setDescription(menuToConvert.getDescription());
         for (SectionDTO sectionToConvert: menuToConvert.getSections()) {
             Section convertedSection = new Section();
             convertedSection.setName(sectionToConvert.getName());
             convertedSection.setDescription(sectionToConvert.getDescription());
+            convertedSection.setId(sectionToConvert.getId());
             for (DishDTO dishToConvert:sectionToConvert.getDishes()) {
                 Dish convertedDish = new Dish();
                 convertedDish.setName(dishToConvert.getName());
@@ -23,6 +25,7 @@ public class ConvertUtil {
                 convertedDish.setPrice(dishToConvert.getPrice());
                 convertedDish.setAllergens(dishToConvert.getAllergens());
                 convertedDish.setSection(convertedSection);
+                convertedDish.setId(dishToConvert.getId());
                 convertedSection.addDish(convertedDish);
             }
             convertedSection.addMenu(convertedMenu);
@@ -31,12 +34,14 @@ public class ConvertUtil {
         return convertedMenu;
     }
 
-    public static MenuDTO convertMenuToDTO(Menu menuToConvert){
+    public static MenuDTO convertMenuDTO(Menu menuToConvert) {
         MenuDTO convertedMenu = new MenuDTO();
         convertedMenu.setName(menuToConvert.getName());
         convertedMenu.setDescription(menuToConvert.getDescription());
+        convertedMenu.setId(menuToConvert.getId());
         for (Section sectionToConvert: menuToConvert.getSections()) {
             SectionDTO convertedSection = new SectionDTO();
+            convertedSection.setId(sectionToConvert.getId());
             convertedSection.setName(sectionToConvert.getName());
             convertedSection.setDescription(sectionToConvert.getDescription());
             for (Dish dishToConvert:sectionToConvert.getDishes()) {
@@ -45,6 +50,7 @@ public class ConvertUtil {
                 convertedDish.setDescription(dishToConvert.getDescription());
                 convertedDish.setPrice(dishToConvert.getPrice());
                 convertedDish.setAllergens(dishToConvert.getAllergens());
+                convertedDish.setId(dishToConvert.getId());
                 convertedSection.addDish(convertedDish);
             }
             convertedMenu.addSection(convertedSection);

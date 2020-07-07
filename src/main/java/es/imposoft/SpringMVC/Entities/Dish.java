@@ -15,7 +15,7 @@ public class Dish {
     private String name;
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "section_id",nullable = false)
     private Section section;
 

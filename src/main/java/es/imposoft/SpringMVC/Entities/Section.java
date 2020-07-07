@@ -14,10 +14,10 @@ public class Section {
     private String name;
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "section")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "section")
     private List<Dish> dishes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id",nullable = false)
     private Menu menu;
 

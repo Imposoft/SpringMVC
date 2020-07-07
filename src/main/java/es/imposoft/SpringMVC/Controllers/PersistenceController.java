@@ -5,7 +5,6 @@ import es.imposoft.SpringMVC.Models.Greeting;
 import es.imposoft.SpringMVC.Entities.Menu;
 import es.imposoft.SpringMVC.Models.MenuDTO;
 import es.imposoft.SpringMVC.Persistence.MenuRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,39 +26,20 @@ public class PersistenceController {
 
 
     @GetMapping("/loadMenu")
-    public Menu loadMenu() {
-        String menuText = readFileAsString("outputs/testMenu.txt");
-        return new Menu(menuText);
+    public MenuDTO loadMenu(@RequestParam int id) {
+        Menu menu = menuRepository.findMenuById(id);
+        MenuDTO menuToReturn = convertToDTO(menu);
+        return menuToReturn;
     }
 
-    public static String readFileAsString(String fileName) {
-        String text = "";
-        try {
-            text = new String(Files.readAllBytes(Paths.get(fileName)));
-        } catch (IOException e) {
-            e.printStackTrace();
+    @GetMapping("/loadMenus")
+    public List<MenuDTO> loadMenus() {
+        List<Menu> menus = menuRepository.findAll();
+        List<MenuDTO> convertedMenus = new ArrayList<>();
+        for (Menu menu:menus) {
+            convertedMenus.add(convertToDTO(menu));
         }
-
-        return text;
-    }
-
-    @PostMapping(value = "/createMenuFile", consumes = "application/json", produces = "application/json")
-    public Menu createMenuFile(@RequestBody MenuDTO newMenu) {
-        System.out.println("Se ha creado un menu nuevo " + newMenu.getMenuText());
-        Menu menuToSave = new Menu(newMenu.getMenuText());
-        menuRepository.save(menuToSave);
-        try {
-            new File("/outputs").mkdirs();
-            PrintWriter writer = new PrintWriter("outputs/testMenu.txt", "UTF-8");
-            writer.println(newMenu.getMenuText());
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return menuToSave;
+        return convertedMenus;
     }
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
@@ -78,5 +58,9 @@ public class PersistenceController {
     @GetMapping("/deleteMenu")
     public void deleteMenu(@RequestAttribute int id) {
         menuRepository.deleteById(id);
+        
+    private MenuDTO convertToDTO(Menu menu){
+        MenuDTO menuDTO = ConvertUtil.convertMenuDTO(menu);
+        return menuDTO;
     }
 }
