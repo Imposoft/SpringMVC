@@ -1,4 +1,4 @@
-package es.imposoft.SpringMVC.Model;
+package es.imposoft.SpringMVC.Models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,10 @@ public class SectionDTO {
     int id;
     String name, description;
     List<DishDTO> dishes;
+
+    public SectionDTO() {
+        this.dishes = new ArrayList<>();
+    }
 
     public SectionDTO(int id, String name, String description, List<DishDTO> dishes) {
         this.id = id;
@@ -47,5 +51,9 @@ public class SectionDTO {
 
     public void setDishes(List<DishDTO> dishes) {
         this.dishes = dishes;
+    }
+
+    public void addDish(DishDTO convertedDish) {
+        this.dishes.add(convertedDish);
     }
 }

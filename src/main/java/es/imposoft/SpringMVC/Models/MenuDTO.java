@@ -1,4 +1,4 @@
-package es.imposoft.SpringMVC.Model;
+package es.imposoft.SpringMVC.Models;
 
 import java.util.List;
 
@@ -61,5 +61,9 @@ public class MenuDTO {
 
     public void setMenuText(String menuText){
         this.menuText = menuText;
+    }
+
+    public void addSection(SectionDTO convertedSection) {
+        this.sections.add(convertedSection);
     }
 }

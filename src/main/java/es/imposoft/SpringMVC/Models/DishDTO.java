@@ -1,7 +1,7 @@
-package es.imposoft.SpringMVC.Model;
+package es.imposoft.SpringMVC.Models;
 
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DishDTO {
@@ -10,6 +10,10 @@ public class DishDTO {
     String name, description;
     List<AllergenDTO> allergens;
     double price;
+
+    public DishDTO() {
+        this.allergens = new ArrayList<>();
+    }
 
     public DishDTO(int id, String name, String description, List<AllergenDTO> allergens, double price) {
         this.id = id;
@@ -56,7 +60,7 @@ public class DishDTO {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

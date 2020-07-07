@@ -1,4 +1,4 @@
-package es.imposoft.SpringMVC.Model;
+package es.imposoft.SpringMVC.Models;
 
 public class Greeting {
     private final long id;

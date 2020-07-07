@@ -3,12 +3,12 @@ package es.imposoft.SpringMVC.Logic.Converter;
 import es.imposoft.SpringMVC.Entities.Dish;
 import es.imposoft.SpringMVC.Entities.Menu;
 import es.imposoft.SpringMVC.Entities.Section;
-import es.imposoft.SpringMVC.Model.DishDTO;
-import es.imposoft.SpringMVC.Model.MenuDTO;
-import es.imposoft.SpringMVC.Model.SectionDTO;
+import es.imposoft.SpringMVC.Models.DishDTO;
+import es.imposoft.SpringMVC.Models.MenuDTO;
+import es.imposoft.SpringMVC.Models.SectionDTO;
 
 public class ConvertUtil {
-    public static Menu convertMenu(MenuDTO menuToConvert){
+    public static Menu convertDTOtoMenu(MenuDTO menuToConvert){
         Menu convertedMenu = new Menu();
         convertedMenu.setName(menuToConvert.getName());
         convertedMenu.setDescription(menuToConvert.getDescription());
@@ -26,6 +26,27 @@ public class ConvertUtil {
                 convertedSection.addDish(convertedDish);
             }
             convertedSection.addMenu(convertedMenu);
+            convertedMenu.addSection(convertedSection);
+        }
+        return convertedMenu;
+    }
+
+    public static MenuDTO convertMenuToDTO(Menu menuToConvert){
+        MenuDTO convertedMenu = new MenuDTO();
+        convertedMenu.setName(menuToConvert.getName());
+        convertedMenu.setDescription(menuToConvert.getDescription());
+        for (Section sectionToConvert: menuToConvert.getSections()) {
+            SectionDTO convertedSection = new SectionDTO();
+            convertedSection.setName(sectionToConvert.getName());
+            convertedSection.setDescription(sectionToConvert.getDescription());
+            for (Dish dishToConvert:sectionToConvert.getDishes()) {
+                DishDTO convertedDish = new DishDTO();
+                convertedDish.setName(dishToConvert.getName());
+                convertedDish.setDescription(dishToConvert.getDescription());
+                convertedDish.setPrice(dishToConvert.getPrice());
+                convertedDish.setAllergens(dishToConvert.getAllergens());
+                convertedSection.addDish(convertedDish);
+            }
             convertedMenu.addSection(convertedSection);
         }
         return convertedMenu;

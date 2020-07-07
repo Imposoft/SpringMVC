@@ -4,10 +4,10 @@ import es.imposoft.SpringMVC.Entities.Dish;
 import es.imposoft.SpringMVC.Entities.Menu;
 import es.imposoft.SpringMVC.Entities.Section;
 import es.imposoft.SpringMVC.Logic.Converter.ConvertUtil;
-import es.imposoft.SpringMVC.Model.AllergenDTO;
-import es.imposoft.SpringMVC.Model.DishDTO;
-import es.imposoft.SpringMVC.Model.MenuDTO;
-import es.imposoft.SpringMVC.Model.SectionDTO;
+import es.imposoft.SpringMVC.Models.AllergenDTO;
+import es.imposoft.SpringMVC.Models.DishDTO;
+import es.imposoft.SpringMVC.Models.MenuDTO;
+import es.imposoft.SpringMVC.Models.SectionDTO;
 import es.imposoft.SpringMVC.Persistence.DishRepository;
 import es.imposoft.SpringMVC.Persistence.MenuRepository;
 import es.imposoft.SpringMVC.Persistence.SectionRepository;
@@ -15,8 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -56,7 +54,7 @@ public class MenuRepositoryTest {
         Menu menu1 = new Menu("TestMenuNew1","testDescription123",sections);
         assertEquals(0,menu1.getId());
 
-        this.menuRepository.save(menu1);
+        //this.menuRepository.save(menu1);
 
         assertNotNull(menu1.getId());
     }
@@ -102,10 +100,17 @@ public class MenuRepositoryTest {
         List<SectionDTO> sections = new ArrayList<>();
         sections.add(section);
         MenuDTO postDto = new MenuDTO(sections,"Nombre","descripcion",0);
-        Menu menu = ConvertUtil.convertMenu(postDto);
+        Menu menu = ConvertUtil.convertDTOtoMenu(postDto);
 
         assertEquals("Bravas",menu.getSections().get(0).getDishes().get(0).getName());
         assertEquals("seccion 1",menu.getSections().get(0).getName());
         assertEquals("Nombre",menu.getName());
+    }
+
+    @Test
+    public void testEntityConversion(){
+        Menu menu = menuRepository.findMenuById(1);
+        System.out.println(menu.getSections().get(0).getName());
+        assertEquals("tESTmenu", menu.getName());
     }
 }

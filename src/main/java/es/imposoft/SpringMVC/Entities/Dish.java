@@ -1,6 +1,6 @@
 package es.imposoft.SpringMVC.Entities;
 
-import es.imposoft.SpringMVC.Model.AllergenDTO;
+import es.imposoft.SpringMVC.Models.AllergenDTO;
 
 import javax.persistence.*;
 import java.util.List;
