@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -58,6 +60,7 @@ public class PersistenceController {
     @GetMapping("/deleteMenu")
     public void deleteMenu(@RequestAttribute int id) {
         menuRepository.deleteById(id);
+    }
         
     private MenuDTO convertToDTO(Menu menu){
         MenuDTO menuDTO = ConvertUtil.convertMenuDTO(menu);

@@ -21,10 +21,6 @@ public class SectionDTO {
         this.dishes = dishes;
     }
 
-    public SectionDTO() {
-        this.dishes = new ArrayList<>();
-    }
-
     public int getId() {
         return id;
     }

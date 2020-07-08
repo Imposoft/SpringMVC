@@ -12,10 +12,6 @@ public class DishDTO {
     List<AllergenDTO> allergens;
     double price;
 
-    public DishDTO() {
-        this.allergens = new ArrayList<>();
-    }
-
     public DishDTO(int id, String name, String description, List<AllergenDTO> allergens, double price) {
         this.id = id;
         this.name = name;
