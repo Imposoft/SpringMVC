@@ -56,8 +56,8 @@ public class PersistenceController {
         return menu;
     }
 
-    @DeleteMapping("/deleteMenu")
-    public void deleteMenu(@PathVariable int id) {
+    @RequestMapping("/deleteMenu")
+    public void deleteMenu(@RequestAttribute int id) {
         menuRepository.deleteById(id);
     }
         
