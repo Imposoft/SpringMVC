@@ -26,8 +26,6 @@ public class PersistenceController {
         return new Menu("texto");
     }
 
-
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/loadMenu")
     public MenuDTO loadMenu(@RequestParam int id) {
         Menu menu = menuRepository.findMenuById(id);
@@ -58,7 +56,7 @@ public class PersistenceController {
         return menu;
     }
 
-    @GetMapping("/deleteMenu")
+    @DeleteMapping("/deleteMenu")
     public void deleteMenu(@RequestAttribute int id) {
         menuRepository.deleteById(id);
     }
