@@ -26,7 +26,7 @@ public class PersistenceController {
         return new Menu("texto");
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @GetMapping("/loadMenu")
     public MenuDTO loadMenu(@RequestParam int id) {
         Menu menu = menuRepository.findMenuById(id);
