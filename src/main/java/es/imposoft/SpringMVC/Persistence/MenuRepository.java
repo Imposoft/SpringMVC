@@ -10,4 +10,5 @@ public interface MenuRepository extends CrudRepository<Menu, Integer> {
     Menu findMenuById(int id);
     Menu findFirstByName(String name);
     List<Menu> findAll();
+    Boolean existsById(int id);
 }

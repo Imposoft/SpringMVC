@@ -29,41 +29,66 @@ public class PersistenceController {
     @CrossOrigin
     @GetMapping("/loadMenu")
     public MenuDTO loadMenu(@RequestParam int id) {
-        Menu menu = menuRepository.findMenuById(id);
-        MenuDTO menuToReturn = convertToDTO(menu);
+        MenuDTO menuToReturn = null;
+        try{
+            Menu menu = menuRepository.findMenuById(id);
+            menuToReturn = convertToDTO(menu);
+            System.out.println("loadMenu: Se ha enviado un menus");
+        } catch (Exception e){
+            System.out.println("loadMenu: El id no existe en la base de datos");
+        }
         return menuToReturn;
     }
 
     @GetMapping("/loadMenus")
     public List<MenuDTO> loadMenus() {
-        List<Menu> menus = menuRepository.findAll();
-        List<MenuDTO> convertedMenus = new ArrayList<>();
-        for (Menu menu:menus) {
-            convertedMenus.add(convertToDTO(menu));
+        List<MenuDTO> menusToReturn = new ArrayList<>();
+        try {
+            List<Menu> menus = menuRepository.findAll();
+            for (Menu menu:menus) {
+                menusToReturn.add(convertToDTO(menu));
+            }
+            System.out.println("loadMenus: Se han enviado todos los menus");
+        } catch (Exception e){
+            System.out.println("loadMenus: Error al enviar los menus");
         }
-        return convertedMenus;
+        return menusToReturn;
     }
 
     @PostMapping(value = "/createMenu", consumes = "application/json", produces = "application/json")
     public MenuDTO createMenu(@RequestBody MenuDTO newMenu) {
-        System.out.println("Se ha recibido un nuevo menu");
-        System.out.println(newMenu.toString());
+        System.out.println("createMenu: Se ha recibido un menu" + newMenu.getName());
         menuRepository.save(convertToEntity(newMenu));
         return newMenu;
     }
 
-    private Menu convertToEntity(MenuDTO postDto) {
-        Menu menu = ConvertUtil.convertDTOtoMenu(postDto);
-        return menu;
+    @PostMapping(value = "/createMenus", consumes = "application/json", produces = "application/json")
+    public List<MenuDTO> createMenu(@RequestBody List<MenuDTO> newMenus) {
+        System.out.println("createMenus: Se ha recibido una lista de menus");
+        for (MenuDTO menuToAdd: newMenus) {
+            menuRepository.save(convertToEntity(menuToAdd));
+        }
+        return newMenus;
     }
 
     @RequestMapping("/deleteMenu")
     public void deleteMenu(@RequestParam int id) {
-        menuRepository.deleteById(id);
+        if(menuRepository.existsById(id)){
+            menuRepository.deleteById(id);
+            System.out.println("deleteMenu: Se ha borrado el menu con exito");
+        } else {
+            System.out.println("deleteMenu: No se ha podido encontrar el menu");
+        }
+
     }
         
     private MenuDTO convertToDTO(Menu menu){
         MenuDTO menuDTO = ConvertUtil.convertMenuDTO(menu);
         return menuDTO;
+    }
+
+    private Menu convertToEntity(MenuDTO postDto) {
+        Menu menu = ConvertUtil.convertDTOtoMenu(postDto);
+        return menu;
     }
 }
